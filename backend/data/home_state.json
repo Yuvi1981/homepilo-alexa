@@ -1,0 +1,358 @@
+{
+  "home_name": "Skyline Smart Residence",
+  "tariff_rate_inr": 8.0,
+  "vacation_mode": true,
+  "vacation_metadata": {
+    "trip_duration_days": 7,
+    "activated_at": "2026-10-23T18:14:11.697380+00:00",
+    "initial_power_watts": 3723.5,
+    "vacation_power_watts": 3.5,
+    "net_saved_watts": 3720.0,
+    "projected_savings_inr": 255,
+    "occupancy_simulation_active": true
+  },
+  "scheduled_tasks": [
+    {
+      "id": "task_a90b76",
+      "name": "Evening Vacation Occupancy Simulation",
+      "tool_name": "set_device",
+      "parameters": {
+        "device_id": "light_living_accent",
+        "state": "on",
+        "level": 40
+      },
+      "delay_seconds": 14400,
+      "trigger_time": "2026-10-23T18:14:11.694517+00:00",
+      "status": "pending"
+    },
+    {
+      "id": "task_f34027",
+      "name": "Evening Vacation Occupancy Simulation",
+      "tool_name": "set_device",
+      "parameters": {
+        "device_id": "light_living_accent",
+        "state": "on",
+        "level": 40
+      },
+      "delay_seconds": 14400,
+      "trigger_time": "2026-10-23T18:14:11.694683+00:00",
+      "status": "pending"
+    }
+  ],
+  "devices": {
+    "geyser_master": {
+      "id": "geyser_master",
+      "name": "Master Bath Geyser (Water Heater)",
+      "room": "Master Bathroom",
+      "type": "geyser",
+      "state": "off",
+      "power_watts": 2000.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "capacity_liters": 25,
+        "target_temp_c": 60,
+        "is_high_draw": true
+      }
+    },
+    "ac_bedroom": {
+      "id": "ac_bedroom",
+      "name": "Master Bedroom Inverter AC",
+      "room": "Master Bedroom",
+      "type": "hvac",
+      "state": "on",
+      "power_watts": 1400.0,
+      "current_draw_watts": 1400.0,
+      "attributes": {
+        "mode": "off",
+        "target_temp_c": 24,
+        "fan_speed": "auto",
+        "is_high_draw": true
+      }
+    },
+    "ac_living": {
+      "id": "ac_living",
+      "name": "Living Room Dual Inverter AC",
+      "room": "Living Room",
+      "type": "hvac",
+      "state": "off",
+      "power_watts": 1500.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "mode": "off",
+        "target_temp_c": 24,
+        "fan_speed": "medium",
+        "is_high_draw": true
+      }
+    },
+    "light_living_main": {
+      "id": "light_living_main",
+      "name": "Living Room Ambient Ceiling",
+      "room": "Living Room",
+      "type": "light",
+      "state": "off",
+      "power_watts": 60.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "brightness": 85,
+        "color_temp_k": 3000,
+        "supports_simulation": true
+      }
+    },
+    "light_living_accent": {
+      "id": "light_living_accent",
+      "name": "Living Room Floor Lamp",
+      "room": "Living Room",
+      "type": "light",
+      "state": "off",
+      "power_watts": 25.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "brightness": 70,
+        "color_temp_k": 2700,
+        "supports_simulation": true
+      }
+    },
+    "light_kitchen": {
+      "id": "light_kitchen",
+      "name": "Kitchen Pendant Downlights",
+      "room": "Kitchen",
+      "type": "light",
+      "state": "off",
+      "power_watts": 45.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "brightness": 100,
+        "color_temp_k": 4000,
+        "supports_simulation": false
+      }
+    },
+    "light_bedroom": {
+      "id": "light_bedroom",
+      "name": "Bedroom Cove Light",
+      "room": "Master Bedroom",
+      "type": "light",
+      "state": "off",
+      "power_watts": 35.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "brightness": 0,
+        "color_temp_k": 2700,
+        "supports_simulation": true
+      }
+    },
+    "light_patio": {
+      "id": "light_patio",
+      "name": "Patio Security Floodlight",
+      "room": "Exterior",
+      "type": "light",
+      "state": "off",
+      "power_watts": 30.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "brightness": 0,
+        "color_temp_k": 5000,
+        "supports_simulation": true
+      }
+    },
+    "plug_entertainment": {
+      "id": "plug_entertainment",
+      "name": "Living Room Media Console (OLED + Audio)",
+      "room": "Living Room",
+      "type": "plug",
+      "state": "off",
+      "power_watts": 140.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "connected_device": "OLED TV & Soundbar",
+        "is_phantom_draw": true
+      }
+    },
+    "plug_kitchen_appliances": {
+      "id": "plug_kitchen_appliances",
+      "name": "Kitchen Counter Plug (Microwave/Coffee)",
+      "room": "Kitchen",
+      "type": "plug",
+      "state": "off",
+      "power_watts": 50.0,
+      "current_draw_watts": 0.0,
+      "attributes": {
+        "connected_device": "Espresso & Microwave Standby",
+        "is_phantom_draw": true
+      }
+    },
+    "lock_front_door": {
+      "id": "lock_front_door",
+      "name": "Main Entrance Deadbolt",
+      "room": "Entryway",
+      "type": "lock",
+      "state": "locked",
+      "power_watts": 2.0,
+      "current_draw_watts": 0.5,
+      "attributes": {
+        "battery_pct": 94,
+        "security_protocol": "Matter/Zigbee 3.0",
+        "tamper_detected": false
+      }
+    },
+    "lock_back_door": {
+      "id": "lock_back_door",
+      "name": "Back Patio Sliding Deadbolt",
+      "room": "Patio",
+      "type": "lock",
+      "state": "locked",
+      "power_watts": 2.0,
+      "current_draw_watts": 0.5,
+      "attributes": {
+        "battery_pct": 88,
+        "security_protocol": "Matter/Zigbee 3.0",
+        "tamper_detected": false
+      }
+    },
+    "lock_garage": {
+      "id": "lock_garage",
+      "name": "Garage Side Entry Door",
+      "room": "Garage",
+      "type": "lock",
+      "state": "locked",
+      "power_watts": 2.0,
+      "current_draw_watts": 0.5,
+      "attributes": {
+        "battery_pct": 91,
+        "security_protocol": "Matter/Zigbee 3.0",
+        "tamper_detected": false
+      }
+    },
+    "sensor_perimeter": {
+      "id": "sensor_perimeter",
+      "name": "Perimeter Security & Door Monitors",
+      "room": "Whole Home",
+      "type": "sensor",
+      "state": "armed",
+      "power_watts": 5.0,
+      "current_draw_watts": 2.0,
+      "attributes": {
+        "armed_mode": "away_extended",
+        "zone_status": "all_contacts_active"
+      }
+    }
+  },
+  "scenes": {
+    "away": {
+      "id": "away",
+      "name": "Away Mode",
+      "description": "Shuts off all lights and sets ACs to eco mode.",
+      "device_actions": [
+        {
+          "device_id": "light_living_main",
+          "state": "off"
+        },
+        {
+          "device_id": "light_living_accent",
+          "state": "off"
+        },
+        {
+          "device_id": "light_kitchen",
+          "state": "off"
+        },
+        {
+          "device_id": "light_bedroom",
+          "state": "off"
+        },
+        {
+          "device_id": "ac_bedroom",
+          "state": "off"
+        },
+        {
+          "device_id": "ac_living",
+          "state": "off"
+        }
+      ]
+    },
+    "night": {
+      "id": "night",
+      "name": "Good Night Routine",
+      "description": "Secures all deadbolts, turns off main areas, sets bedroom AC to 24\u00b0C.",
+      "device_actions": [
+        {
+          "device_id": "light_living_main",
+          "state": "off"
+        },
+        {
+          "device_id": "light_living_accent",
+          "state": "off"
+        },
+        {
+          "device_id": "light_kitchen",
+          "state": "off"
+        },
+        {
+          "device_id": "lock_front_door",
+          "state": "locked"
+        },
+        {
+          "device_id": "lock_back_door",
+          "state": "locked"
+        },
+        {
+          "device_id": "lock_garage",
+          "state": "locked"
+        },
+        {
+          "device_id": "ac_bedroom",
+          "state": "on",
+          "attributes": {
+            "target_temp_c": 24
+          }
+        }
+      ]
+    },
+    "movie": {
+      "id": "movie",
+      "name": "Cinema Lounge",
+      "description": "Dims living room lights to 20% warm, activates media console.",
+      "device_actions": [
+        {
+          "device_id": "light_living_main",
+          "state": "off"
+        },
+        {
+          "device_id": "light_living_accent",
+          "state": "on",
+          "attributes": {
+            "brightness": 20,
+            "color_temp_k": 2200
+          }
+        },
+        {
+          "device_id": "plug_entertainment",
+          "state": "on"
+        }
+      ]
+    },
+    "welcome": {
+      "id": "welcome",
+      "name": "Welcome Home",
+      "description": "Unlocks front door, powers living lights to warm 75%, sets comfortable AC.",
+      "device_actions": [
+        {
+          "device_id": "lock_front_door",
+          "state": "unlocked"
+        },
+        {
+          "device_id": "light_living_main",
+          "state": "on",
+          "attributes": {
+            "brightness": 75
+          }
+        },
+        {
+          "device_id": "ac_living",
+          "state": "on",
+          "attributes": {
+            "target_temp_c": 23
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeBrain — Goal-Driven Smart Home Agent Protocol | Alexa+ Track</title>
+  <meta name="description" content="HomeBrain translates single natural-language user intentions into robust, secure, multi-step execution plans via Model Context Protocol (MCP) for Alexa+.">
+  
+  <!-- Modern Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="brand-logo">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" stroke="#00f59b" stroke-width="2" stroke-dasharray="3 3"/>
+          <path d="M16 6L7 14V25C7 25.55 7.45 26 8 26H24C24.55 26 25 25.55 25 25V14L16 6Z" fill="#00f59b" fill-opacity="0.15" stroke="#00f59b" stroke-width="2"/>
+          <circle cx="16" cy="18" r="3" fill="#00f59b"/>
+          <path d="M16 11V15M13 18H11M21 18H19" stroke="#00f59b" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="brand-title">HomeBrain <span class="badge-tag">MCP PROTOCOL</span></div>
+          <div class="brand-subtitle">Goal-Driven Smart Home Agent Protocol • Alexa+ Track</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="telemetry-pill" id="pillLivePower">
+        <span class="pulse-dot green"></span>
+        <span class="label">Live Power:</span>
+        <span class="value" id="hdrLivePower">-- W</span>
+      </div>
+      <div class="telemetry-pill" id="pillSecurity">
+        <span class="pulse-dot yellow" id="dotSecurity"></span>
+        <span class="label">Perimeter:</span>
+        <span class="value" id="hdrPerimeter">Checking...</span>
+      </div>
+      <div class="telemetry-pill" id="pillVacation">
+        <span class="label">Mode:</span>
+        <span class="value" id="hdrMode">Normal</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn btn-outline" id="btnOpenDocs" title="Open FastAPI Swagger REST Docs">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        REST API Docs
+      </button>
+      <button class="btn btn-danger-outline" id="btnResetState" title="Reset to un-optimized baseline (doors unlocked, geyser on)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Reset Baseline
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="dashboard-container">
+
+    <!-- HERO SECTION: Alexa+ Goal Orchestrator -->
+    <section class="hero-orchestrator-card">
+      <div class="card-glass-header">
+        <div class="section-tag"><span class="alexa-ring"></span> ALEXA+ NATURAL LANGUAGE GOAL COMPILER</div>
+        <div class="hackathon-cite">"One sentence to Alexa+. Whole house handled."</div>
+      </div>
+
+      <div class="voice-input-wrapper">
+        <div class="mic-wave-container" id="micIndicator">
+          <div class="wave wave1"></div>
+          <div class="wave wave2"></div>
+          <div class="wave wave3"></div>
+          <svg class="mic-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f59b" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        </div>
+        <input type="text" id="inputGoal" class="goal-input" placeholder="Speak or type a compound goal (e.g., 'Alexa, I'm leaving for a week. Set the house up.')..." value="Alexa, I'm leaving for a week. Set the house up." onkeydown="if(event.key==='Enter') handleCompileAndRun()">
+        <button id="btnExecuteGoal" class="btn btn-primary btn-glow" onclick="handleCompileAndRun()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Compile & Run Plan
+        </button>
+      </div>
+
+      <!-- Quick Preset Goal Chips -->
+      <div class="preset-goals-row">
+        <span class="chips-label">Sample Goals:</span>
+        <button class="chip active-chip" data-goal="Alexa, I'm leaving for a week. Set the house up.">
+          🛫 Leaving for a week (8-Tool Demo)
+        </button>
+        <button class="chip" data-goal="Alexa, I'm heading out for a 2 week trip. Save energy and lock down.">
+          🗓️ 2-Week Vacation
+        </button>
+        <button class="chip" data-goal="Alexa, good night. Secure all doors and turn down power.">
+          🌙 Good Night Routine
+        </button>
+        <button class="chip" data-goal="Alexa, movie night in the living room.">
+          🎬 Cinema Lounge
+        </button>
+        <button class="chip" data-goal="Alexa, how can I save on power this month?">
+          💡 Energy Intelligence Audit
+        </button>
+      </div>
+
+      <!-- Plan Execution Visualizer -->
+      <div class="plan-execution-panel" id="planExecutionPanel">
+        <div class="panel-header-row">
+          <div class="plan-title-block">
+            <span class="badge-status" id="planBadgeStatus">READY</span>
+            <span class="plan-title" id="planTitle">8-Step Procedural Execution Plan</span>
+          </div>
+          <div class="plan-stats-block" id="planStatsBlock">
+            <span class="stat-pill"><strong id="planSavedWatts">-- W</strong> Saved</span>
+            <span class="stat-pill"><strong id="planSavedMoney">₹--</strong> Projected Cut</span>
+            <span class="stat-pill"><strong id="planDuration">-- Days</strong> Trip</span>
+          </div>
+        </div>
+
+        <p class="plan-summary-text" id="planSummaryText">
+          Ready to translate high-level natural language intent into verified multi-step MCP execution across Control, Plan, Insight, and Trust domains.
+        </p>
+
+        <!-- Stepper Container -->
+        <div class="stepper-grid" id="stepperGrid">
+          <!-- Dynamically populated 8 steps -->
+        </div>
+
+        <!-- Alexa Voice Response Bubble -->
+        <div class="alexa-response-bubble" id="alexaResponseBubble">
+          <div class="alexa-avatar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#38bdf8" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="#38bdf8"/></svg>
+          </div>
+          <div class="speech-content">
+            <div class="speaker-name">Alexa+ Agent Spoken Confirmation</div>
+            <div class="speaker-text" id="alexaSpokenText">"Standing by. Issue a voice goal above to orchestrate your home."</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: TELEMETRY & SAVINGS BENCHMARK -->
+    <div class="metrics-grid">
+      <!-- Card: Live Power Draw & Tariff -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-title">LIVE POWER DRAW</span>
+          <span class="badge-mini" id="badgePowerState">ACTIVE LOADS</span>
+        </div>
+        <div class="power-display">
+          <div class="power-number" id="txtLiveWatts">3,720</div>
+          <div class="power-unit">Watts</div>
+        </div>
+        <div class="power-bar-wrap">
+          <div class="power-bar-fill" id="powerBarFill" style="width: 85%;"></div>
+        </div>
+        <div class="metric-sub-row">
+          <span>Daily Cost: <strong id="txtDailyCost">₹714.2</strong></span>
+          <span>Tariff: <strong>₹8.0 / kWh</strong></span>
+        </div>
+      </div>
+
+      <!-- Card: Cumulative Savings Benchmark (Matching Slide 9!) -->
+      <div class="metric-card benchmark-card">
+        <div class="metric-header">
+          <span class="metric-title">CUMULATIVE SAVINGS BY TRIP LENGTH</span>
+          <span class="badge-mini neon">₹8/kWh MODEL</span>
+        </div>
+        <div class="benchmark-chart-wrap">
+          <div class="chart-bars">
+            <div class="chart-col active" data-days="7">
+              <div class="chart-bar-val">₹255</div>
+              <div class="chart-bar" style="height: 25%;"></div>
+              <div class="chart-lbl">1 wk</div>
+            </div>
+            <div class="chart-col" data-days="14">
+              <div class="chart-bar-val">₹510</div>
+              <div class="chart-bar" style="height: 50%;"></div>
+              <div class="chart-lbl">2 wk</div>
+            </div>
+            <div class="chart-col" data-days="21">
+              <div class="chart-bar-val">₹766</div>
+              <div class="chart-bar" style="height: 75%;"></div>
+              <div class="chart-lbl">3 wk</div>
+            </div>
+            <div class="chart-col" data-days="28">
+              <div class="chart-bar-val">₹1,021</div>
+              <div class="chart-bar" style="height: 100%;"></div>
+              <div class="chart-lbl">4 wk</div>
+            </div>
+          </div>
+        </div>
+        <div class="metric-sub-row">
+          <span id="txtBenchmarkDesc">1 Week Absence: <strong>₹255 saved</strong> (31.9 kWh)</span>
+          <button class="btn-text-link" id="btnTestProjection">Custom Slider</button>
+        </div>
+      </div>
+
+      <!-- Card: Security Perimeter Status -->
+      <div class="metric-card">
+        <div class="metric-header">
+          <span class="metric-title">PERIMETER & TRUST DOMAIN</span>
+          <span class="badge-mini" id="badgePerimeterAudit">AUDITED</span>
+        </div>
+        <div class="security-items-list" id="securityItemsList">
+          <div class="sec-item">
+            <span class="sec-name">Front Door Deadbolt</span>
+            <span class="sec-status locked" id="secFrontDoor">LOCKED</span>
+          </div>
+          <div class="sec-item">
+            <span class="sec-name">Back Patio Sliding Deadbolt</span>
+            <span class="sec-status unlocked" id="secBackDoor">UNLOCKED (!)</span>
+          </div>
+          <div class="sec-item">
+            <span class="sec-name">Garage Side Entry Door</span>
+            <span class="sec-status unlocked" id="secGarageDoor">UNLOCKED (!)</span>
+          </div>
+          <div class="sec-item">
+            <span class="sec-name">Perimeter Security Alarm</span>
+            <span class="sec-status disarmed" id="secPerimeterAlarm">DISARMED</span>
+          </div>
+        </div>
+        <div class="audit-hash-row">
+          <span class="hash-label">Trust Hash:</span>
+          <span class="hash-value" id="txtTrustHash">hb-v_88f921ea02</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABS ROW: Smart Devices Matrix vs MCP 12 Tools vs Audit Ledger vs Paradigm Comparison -->
+    <div class="tabs-nav-bar">
+      <button class="tab-btn active" data-tab="tabDevices">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+        Smart Device Matrix (<span id="countDevices">14</span>)
+      </button>
+      <button class="tab-btn" data-tab="tabMcpTools">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        MCP 12-Tool Workbench
+      </button>
+      <button class="tab-btn" data-tab="tabAuditLedger">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Auditable Agentic Ledger (<span id="countLogs">--</span>)
+      </button>
+      <button class="tab-btn" data-tab="tabParadigm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Hackathon Paradigm Shift
+      </button>
+    </div>
+
+    <!-- TAB 1: SMART DEVICE MATRIX -->
+    <div class="tab-content active" id="tabDevices">
+      <div class="device-filter-bar">
+        <div class="filter-group">
+          <button class="pill-btn active" data-filter="all">All Devices</button>
+          <button class="pill-btn" data-filter="heavy">High-Draw (Geyser & AC)</button>
+          <button class="pill-btn" data-filter="light">Lighting</button>
+          <button class="pill-btn" data-filter="lock">Deadbolts</button>
+          <button class="pill-btn" data-filter="plug">Plugs & Plugs</button>
+        </div>
+        <div class="scene-quick-bar">
+          <span class="scene-lbl">Scenes:</span>
+          <button class="btn btn-sm btn-outline" data-scene="night">🌙 Night</button>
+          <button class="btn btn-sm btn-outline" data-scene="away">🚶 Away</button>
+          <button class="btn btn-sm btn-outline" data-scene="movie">🎬 Movie</button>
+          <button class="btn btn-sm btn-outline" data-scene="welcome">🏡 Welcome</button>
+        </div>
+      </div>
+
+      <div class="devices-grid" id="devicesGrid">
+        <!-- Devices rendered via JavaScript -->
+      </div>
+    </div>
+
+    <!-- TAB 2: MCP 12-TOOL WORKBENCH -->
+    <div class="tab-content" id="tabMcpTools">
+      <div class="mcp-info-banner">
+        <div>
+          <h3>Model Context Protocol (MCP) Standard Server</h3>
+          <p>Decoupling high-level voice understanding from execution logic. 12 atomic and composite tools across 4 domains.</p>
+        </div>
+        <div class="domain-legend">
+          <span class="dom-tag control">Control (4)</span>
+          <span class="dom-tag plan">Plan (3)</span>
+          <span class="dom-tag insight">Insight (3)</span>
+          <span class="dom-tag trust">Trust (2)</span>
+        </div>
+      </div>
+
+      <div class="mcp-tools-grid" id="mcpToolsGrid">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <!-- TAB 3: AUDITABLE AGENTIC LEDGER -->
+    <div class="tab-content" id="tabAuditLedger">
+      <div class="ledger-header-bar">
+        <div>
+          <h3>Cryptographically Logged Agentic Audit Ledger</h3>
+          <p>Every autonomous action executed by Alexa+ or the user is recorded with timestamps, initiator, and parameter diffs.</p>
+        </div>
+        <div class="ledger-actions">
+          <button class="btn btn-outline btn-sm" id="btnExportLogs">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export JSON
+          </button>
+          <button class="btn btn-outline btn-sm" id="btnRefreshLogs">Refresh</button>
+        </div>
+      </div>
+
+      <div class="audit-table-wrapper">
+        <table class="audit-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Initiator</th>
+              <th>Domain</th>
+              <th>Tool Executed</th>
+              <th>Action Description</th>
+              <th>Impact / Diff</th>
+              <th>Audit Hash</th>
+            </tr>
+          </thead>
+          <tbody id="auditTableBody">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 4: HACKATHON PARADIGM SHIFT -->
+    <div class="tab-content" id="tabParadigm">
+      <div class="comparison-card">
+        <div class="comparison-header">
+          <h2>Standard Alexa vs. Automated HomeBrain Alexa+</h2>
+          <p>Amazon Developer Hackathon 2026 Architectural Breakdown</p>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th style="width: 20%;">Dimension</th>
+                <th style="width: 40%;" class="bad-col">Today's Standard Alexa</th>
+                <th style="width: 40%;" class="good-col">HomeBrain Automated Alexa+</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Execution Model</strong></td>
+                <td><strong>Command-Follower:</strong> Executes isolated, literal single-intent phrases (e.g., "Turn off living room light").</td>
+                <td class="highlight-cell"><strong>Goal-Driven Orchestrator:</strong> Translates high-level human objectives ("I'm leaving for a week") into multi-step execution plans.</td>
+              </tr>
+              <tr>
+                <td><strong>Tool Discovery</strong></td>
+                <td>Relies on rigid, hardcoded vendor integrations, custom skills, and siloed APIs.</td>
+                <td class="highlight-cell">Uses dynamic, standardized <strong>Model Context Protocol (MCP)</strong> servers with 12 discoverable tool definitions.</td>
+              </tr>
+              <tr>
+                <td><strong>User Friction</strong></td>
+                <td>Requires user to manually script routines beforehand or tap 5+ separate apps.</td>
+                <td class="highlight-cell"><strong>Zero manual pre-scripting:</strong> 1 natural sentence initiates complex device sequencing across lighting, HVAC, and security.</td>
+              </tr>
+              <tr>
+                <td><strong>Transparency & Trust</strong></td>
+                <td>Opaque execution; if a routine fails halfway, the user receives minimal feedback.</td>
+                <td class="highlight-cell"><strong>Fully auditable activity logs:</strong> Verification tools (<code>get_activity_log</code>, <code>get_home_status</code>) track every step.</td>
+              </tr>
+              <tr>
+                <td><strong>Energy Impact</strong></td>
+                <td>Passive; forgotten heavy appliances remain powered on, wasting money.</td>
+                <td class="highlight-cell"><strong>Model-based Energy Optimizer:</strong> Calibrated at Rs 8/kWh, saving ~₹255/week automatically.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="honest-scope-box">
+          <div class="scope-title">HONEST SCOPE (From Hackathon Slide Deck)</div>
+          <p>The home is simulated (JSON state stands in for devices) and savings are estimates from a simple power model at Rs 8/kWh. The MCP interface is real and tested end to end with an MCP client; live Alexa+ device integration is the next step.</p>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Modal for Custom Slider / Tool Testing -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-card" id="modalCard">
+      <div class="modal-header">
+        <h3 id="modalTitle">Tool Workbench Execution</h3>
+        <button class="btn-close" id="btnCloseModal">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

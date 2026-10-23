@@ -1,0 +1,33 @@
+[
+  {
+    "id": "d03a90ef",
+    "timestamp": "2026-10-23T18:15:31.448180+00:00",
+    "initiator": "Alexa+ Voice Agent",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Master Bath Geyser (Water Heater) to OFF",
+    "parameters": {
+      "device_id": "geyser_master",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "geyser_master",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_cd2fb881081373e1"
+    },
+    "status": "success",
+    "energy_impact": "+0.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 0.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  }
+]
