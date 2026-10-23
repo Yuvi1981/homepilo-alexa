@@ -1,5 +1,389 @@
 [
   {
+    "id": "bf922975",
+    "timestamp": "2026-10-23T18:33:38.992512+00:00",
+    "initiator": "System Simulator",
+    "tool_name": "reset_state",
+    "domain": "trust",
+    "action": "Reset simulated smart home state to un-optimized default baseline",
+    "parameters": {
+      "status": "initial_unprepared_state"
+    },
+    "result": {
+      "active_power_watts": 3723.5,
+      "audit_hash": "hb-v_fdcd7965eab5c881"
+    },
+    "status": "success",
+    "energy_impact": "Baseline restored (~3,720W live draw)",
+    "state_diff": null
+  },
+  {
+    "id": "68f99870",
+    "timestamp": "2026-10-23T18:33:25.081452+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "plan_vacation_mode",
+    "domain": "plan",
+    "action": "Compiled and executed complete vacation protocol for 7-day trip (8 tool operations)",
+    "parameters": {
+      "trip_duration_days": 7,
+      "simulate_occupancy": true
+    },
+    "result": {
+      "steps_completed": 8,
+      "power_reduction_watts": 3720.0,
+      "projected_savings_inr": 255,
+      "security_status": "ALL_DEADBOLTS_SECURED_PERIMETER_ARMED",
+      "audit_hash": "hb-v_9bb665b370f36ae4"
+    },
+    "status": "success",
+    "energy_impact": "-3720.0 W continuous reduction (\u20b9255 saved)",
+    "state_diff": null
+  },
+  {
+    "id": "dbbec568",
+    "timestamp": "2026-10-23T18:33:25.057976+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "schedule_task",
+    "domain": "plan",
+    "action": "Scheduled automation 'Evening Vacation Occupancy Simulation' (+14400s trigger)",
+    "parameters": {
+      "task_id": "task_da27d5",
+      "tool": "set_device"
+    },
+    "result": {
+      "task_id": "task_da27d5",
+      "status": "scheduled",
+      "audit_hash": "hb-v_0acb699ca0fe53e1"
+    },
+    "status": "success",
+    "energy_impact": null,
+    "state_diff": null
+  },
+  {
+    "id": "4773ad11",
+    "timestamp": "2026-10-23T18:33:25.044204+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_lock",
+    "domain": "control",
+    "action": "Secured and engaged deadbolt Garage Side Entry Door",
+    "parameters": {
+      "lock_id": "lock_garage",
+      "locked": true
+    },
+    "result": {
+      "lock_id": "lock_garage",
+      "state": "locked",
+      "security_verified": true,
+      "audit_hash": "hb-v_f3a2d0911b20cc9b"
+    },
+    "status": "success",
+    "energy_impact": "Security operation (< 1W transient)",
+    "state_diff": null
+  },
+  {
+    "id": "d0ad281e",
+    "timestamp": "2026-10-23T18:33:25.031876+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_lock",
+    "domain": "control",
+    "action": "Secured and engaged deadbolt Back Patio Sliding Deadbolt",
+    "parameters": {
+      "lock_id": "lock_back_door",
+      "locked": true
+    },
+    "result": {
+      "lock_id": "lock_back_door",
+      "state": "locked",
+      "security_verified": true,
+      "audit_hash": "hb-v_b46c69f4da308e21"
+    },
+    "status": "success",
+    "energy_impact": "Security operation (< 1W transient)",
+    "state_diff": null
+  },
+  {
+    "id": "cf1218f3",
+    "timestamp": "2026-10-23T18:33:25.018100+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_lock",
+    "domain": "control",
+    "action": "Secured and engaged deadbolt Main Entrance Deadbolt",
+    "parameters": {
+      "lock_id": "lock_front_door",
+      "locked": true
+    },
+    "result": {
+      "lock_id": "lock_front_door",
+      "state": "locked",
+      "security_verified": true,
+      "audit_hash": "hb-v_0a387b584797b64e"
+    },
+    "status": "success",
+    "energy_impact": "Security operation (< 1W transient)",
+    "state_diff": null
+  },
+  {
+    "id": "c4cf8038",
+    "timestamp": "2026-10-23T18:33:25.004261+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Kitchen Counter Plug (Microwave/Coffee) to OFF",
+    "parameters": {
+      "device_id": "plug_kitchen_appliances",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "plug_kitchen_appliances",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_7c73b284adbdfbe8"
+    },
+    "status": "success",
+    "energy_impact": "-50.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 50.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
+    "id": "558ad9b8",
+    "timestamp": "2026-10-23T18:33:24.990460+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Living Room Media Console (OLED + Audio) to OFF",
+    "parameters": {
+      "device_id": "plug_entertainment",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "plug_entertainment",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_f197e2ebeeffaf62"
+    },
+    "status": "success",
+    "energy_impact": "-140.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 140.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
+    "id": "b21a570d",
+    "timestamp": "2026-10-23T18:33:24.979753+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Bedroom Cove Light to OFF",
+    "parameters": {
+      "device_id": "light_bedroom",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "light_bedroom",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_e4512885c3b935d9"
+    },
+    "status": "success",
+    "energy_impact": "+0.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 0.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
+    "id": "e3fee789",
+    "timestamp": "2026-10-23T18:33:24.967105+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Kitchen Pendant Downlights to OFF",
+    "parameters": {
+      "device_id": "light_kitchen",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "light_kitchen",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_8228e7d54aa9de29"
+    },
+    "status": "success",
+    "energy_impact": "-45.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 45.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
+    "id": "ca8a3a33",
+    "timestamp": "2026-10-23T18:33:24.949842+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Living Room Floor Lamp to OFF",
+    "parameters": {
+      "device_id": "light_living_accent",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "light_living_accent",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_73379c55fafc999c"
+    },
+    "status": "success",
+    "energy_impact": "-25.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 25.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
+    "id": "7e4aaf75",
+    "timestamp": "2026-10-23T18:33:24.940206+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Living Room Ambient Ceiling to OFF",
+    "parameters": {
+      "device_id": "light_living_main",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "light_living_main",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_32e810b2e9e6e237"
+    },
+    "status": "success",
+    "energy_impact": "-60.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 60.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
+    "id": "ab29a689",
+    "timestamp": "2026-10-23T18:33:24.928085+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_thermostat",
+    "domain": "control",
+    "action": "Set HVAC Living Room Dual Inverter AC to OFF",
+    "parameters": {
+      "device_id": "ac_living",
+      "mode": "off",
+      "target_temp_c": null
+    },
+    "result": {
+      "device_id": "ac_living",
+      "mode": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_de3723238f267a3e"
+    },
+    "status": "success",
+    "energy_impact": "HVAC draw: 0.0 W",
+    "state_diff": null
+  },
+  {
+    "id": "9a2a864a",
+    "timestamp": "2026-10-23T18:33:24.911664+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_thermostat",
+    "domain": "control",
+    "action": "Set HVAC Master Bedroom Inverter AC to OFF",
+    "parameters": {
+      "device_id": "ac_bedroom",
+      "mode": "off",
+      "target_temp_c": null
+    },
+    "result": {
+      "device_id": "ac_bedroom",
+      "mode": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_420134088634f4b0"
+    },
+    "status": "success",
+    "energy_impact": "HVAC draw: 0.0 W",
+    "state_diff": null
+  },
+  {
+    "id": "cb8627dd",
+    "timestamp": "2026-10-23T18:33:24.908502+00:00",
+    "initiator": "Alexa+ Voice Agent (Demo Client)",
+    "tool_name": "set_device",
+    "domain": "control",
+    "action": "Switched Master Bath Geyser (Water Heater) to OFF",
+    "parameters": {
+      "device_id": "geyser_master",
+      "state": "off",
+      "level": null
+    },
+    "result": {
+      "device_id": "geyser_master",
+      "new_state": "off",
+      "current_draw_watts": 0.0,
+      "audit_hash": "hb-v_f0e3cb8ed41b645e"
+    },
+    "status": "success",
+    "energy_impact": "-2000.0 W",
+    "state_diff": {
+      "before": {
+        "state": "off",
+        "watts": 2000.0
+      },
+      "after": {
+        "state": "off",
+        "watts": 0.0
+      }
+    }
+  },
+  {
     "id": "d03a90ef",
     "timestamp": "2026-10-23T18:15:31.448180+00:00",
     "initiator": "Alexa+ Voice Agent",

@@ -14,10 +14,16 @@ if current_dir not in sys.path:
 if parent_dir not in sys.path:
     sys.path.insert(0, parent_dir)
 
-from homebrain.models import GoalPlan
-from homebrain.state_manager import state_manager
-from homebrain.mcp_tools import MCP_TOOL_DEFINITIONS, HomeBrainToolEngine
-from homebrain.goal_planner import GoalToPlanCompiler
+try:
+    from backend.homebrain.models import GoalPlan
+    from backend.homebrain.state_manager import state_manager
+    from backend.homebrain.mcp_tools import MCP_TOOL_DEFINITIONS, HomeBrainToolEngine
+    from backend.homebrain.goal_planner import GoalToPlanCompiler
+except ImportError:
+    from homebrain.models import GoalPlan
+    from homebrain.state_manager import state_manager
+    from homebrain.mcp_tools import MCP_TOOL_DEFINITIONS, HomeBrainToolEngine
+    from homebrain.goal_planner import GoalToPlanCompiler
 
 app = FastAPI(
     title="HomeBrain REST API & MCP Server",

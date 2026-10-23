@@ -24,11 +24,15 @@ def main():
     print("  [+] Terminal Demo Run   : python run_demo.py")
     print("=" * 76 + "\n")
 
+    host = os.getenv("HOST", "0.0.0.0")
+    port = int(os.getenv("PORT", 8000))
+    is_prod = bool(os.getenv("RENDER") or os.getenv("PORT"))
+
     uvicorn.run(
         "backend.server:app",
-        host="127.0.0.1",
-        port=8000,
-        reload=True
+        host=host,
+        port=port,
+        reload=not is_prod
     )
 
 if __name__ == "__main__":

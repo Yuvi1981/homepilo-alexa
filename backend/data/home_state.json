@@ -1,53 +1,18 @@
 {
   "home_name": "Skyline Smart Residence",
   "tariff_rate_inr": 8.0,
-  "vacation_mode": true,
-  "vacation_metadata": {
-    "trip_duration_days": 7,
-    "activated_at": "2026-10-23T18:14:11.697380+00:00",
-    "initial_power_watts": 3723.5,
-    "vacation_power_watts": 3.5,
-    "net_saved_watts": 3720.0,
-    "projected_savings_inr": 255,
-    "occupancy_simulation_active": true
-  },
-  "scheduled_tasks": [
-    {
-      "id": "task_a90b76",
-      "name": "Evening Vacation Occupancy Simulation",
-      "tool_name": "set_device",
-      "parameters": {
-        "device_id": "light_living_accent",
-        "state": "on",
-        "level": 40
-      },
-      "delay_seconds": 14400,
-      "trigger_time": "2026-10-23T18:14:11.694517+00:00",
-      "status": "pending"
-    },
-    {
-      "id": "task_f34027",
-      "name": "Evening Vacation Occupancy Simulation",
-      "tool_name": "set_device",
-      "parameters": {
-        "device_id": "light_living_accent",
-        "state": "on",
-        "level": 40
-      },
-      "delay_seconds": 14400,
-      "trigger_time": "2026-10-23T18:14:11.694683+00:00",
-      "status": "pending"
-    }
-  ],
+  "vacation_mode": false,
+  "vacation_metadata": {},
+  "scheduled_tasks": [],
   "devices": {
     "geyser_master": {
       "id": "geyser_master",
       "name": "Master Bath Geyser (Water Heater)",
       "room": "Master Bathroom",
       "type": "geyser",
-      "state": "off",
+      "state": "on",
       "power_watts": 2000.0,
-      "current_draw_watts": 0.0,
+      "current_draw_watts": 2000.0,
       "attributes": {
         "capacity_liters": 25,
         "target_temp_c": 60,
@@ -63,8 +28,8 @@
       "power_watts": 1400.0,
       "current_draw_watts": 1400.0,
       "attributes": {
-        "mode": "off",
-        "target_temp_c": 24,
+        "mode": "cool",
+        "target_temp_c": 22,
         "fan_speed": "auto",
         "is_high_draw": true
       }
@@ -89,9 +54,9 @@
       "name": "Living Room Ambient Ceiling",
       "room": "Living Room",
       "type": "light",
-      "state": "off",
+      "state": "on",
       "power_watts": 60.0,
-      "current_draw_watts": 0.0,
+      "current_draw_watts": 60.0,
       "attributes": {
         "brightness": 85,
         "color_temp_k": 3000,
@@ -103,9 +68,9 @@
       "name": "Living Room Floor Lamp",
       "room": "Living Room",
       "type": "light",
-      "state": "off",
+      "state": "on",
       "power_watts": 25.0,
-      "current_draw_watts": 0.0,
+      "current_draw_watts": 25.0,
       "attributes": {
         "brightness": 70,
         "color_temp_k": 2700,
@@ -117,9 +82,9 @@
       "name": "Kitchen Pendant Downlights",
       "room": "Kitchen",
       "type": "light",
-      "state": "off",
+      "state": "on",
       "power_watts": 45.0,
-      "current_draw_watts": 0.0,
+      "current_draw_watts": 45.0,
       "attributes": {
         "brightness": 100,
         "color_temp_k": 4000,
@@ -159,9 +124,9 @@
       "name": "Living Room Media Console (OLED + Audio)",
       "room": "Living Room",
       "type": "plug",
-      "state": "off",
+      "state": "on",
       "power_watts": 140.0,
-      "current_draw_watts": 0.0,
+      "current_draw_watts": 140.0,
       "attributes": {
         "connected_device": "OLED TV & Soundbar",
         "is_phantom_draw": true
@@ -172,9 +137,9 @@
       "name": "Kitchen Counter Plug (Microwave/Coffee)",
       "room": "Kitchen",
       "type": "plug",
-      "state": "off",
+      "state": "on",
       "power_watts": 50.0,
-      "current_draw_watts": 0.0,
+      "current_draw_watts": 50.0,
       "attributes": {
         "connected_device": "Espresso & Microwave Standby",
         "is_phantom_draw": true
@@ -199,7 +164,7 @@
       "name": "Back Patio Sliding Deadbolt",
       "room": "Patio",
       "type": "lock",
-      "state": "locked",
+      "state": "unlocked",
       "power_watts": 2.0,
       "current_draw_watts": 0.5,
       "attributes": {
@@ -213,7 +178,7 @@
       "name": "Garage Side Entry Door",
       "room": "Garage",
       "type": "lock",
-      "state": "locked",
+      "state": "unlocked",
       "power_watts": 2.0,
       "current_draw_watts": 0.5,
       "attributes": {
@@ -227,11 +192,11 @@
       "name": "Perimeter Security & Door Monitors",
       "room": "Whole Home",
       "type": "sensor",
-      "state": "armed",
+      "state": "disarmed",
       "power_watts": 5.0,
       "current_draw_watts": 2.0,
       "attributes": {
-        "armed_mode": "away_extended",
+        "armed_mode": "disarmed",
         "zone_status": "all_contacts_active"
       }
     }
