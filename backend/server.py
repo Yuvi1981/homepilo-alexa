@@ -216,6 +216,13 @@ def reset_home_state():
 
 # ================= STATIC FILES / FRONTEND =================
 frontend_dir = os.path.join(parent_dir, "frontend")
+if not os.path.exists(frontend_dir):
+    frontend_dir = os.path.abspath(os.path.join(current_dir, "..", "frontend"))
+if not os.path.exists(frontend_dir):
+    frontend_dir = os.path.abspath(os.path.join(os.getcwd(), "frontend"))
+if not os.path.exists(frontend_dir):
+    frontend_dir = os.path.abspath(os.path.join(os.getcwd(), "..", "frontend"))
+
 if os.path.exists(frontend_dir):
     app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
 
