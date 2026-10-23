@@ -222,6 +222,9 @@ if not os.path.exists(frontend_dir):
     frontend_dir = os.path.abspath(os.path.join(os.getcwd(), "frontend"))
 if not os.path.exists(frontend_dir):
     frontend_dir = os.path.abspath(os.path.join(os.getcwd(), "..", "frontend"))
+if not os.path.exists(frontend_dir) or not os.path.exists(os.path.join(frontend_dir, "index.html")):
+    if os.path.exists(os.path.join(os.getcwd(), "index.html")):
+        frontend_dir = os.getcwd()
 
 if os.path.exists(frontend_dir):
     app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
